@@ -1,0 +1,6 @@
+{
+  "name": "Robust Walmart Scraper for Microsoft Azure",
+  "description": "Production-ready enterprise Walmart scraper designed for Microsoft Azure with store and pickup verification, exact 22-field JSON schema, silent-blocking safeguards, and atomic datasets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
