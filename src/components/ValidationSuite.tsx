@@ -217,7 +217,7 @@ export const ValidationSuite: React.FC<ValidationSuiteProps> = ({
                     <span>Status: <strong className={check.passed ? 'text-emerald-400' : 'text-red-400'}>{check.passed ? 'COMPLIANT' : 'VIOLATION'}</strong></span>
                   </div>
 
-                  {check.failingSample && (
+                  {Boolean(check.failingSample) && (
                     <div className="p-2.5 rounded bg-slate-900 border border-slate-800 font-mono text-[11px] text-red-300 overflow-x-auto">
                       <span className="text-slate-400 text-[10px] block mb-1">Diagnostic Sample:</span>
                       {JSON.stringify(check.failingSample, null, 2)}

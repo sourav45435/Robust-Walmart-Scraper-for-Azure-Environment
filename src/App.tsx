@@ -202,7 +202,7 @@ export default function App() {
 
     let csvContent = headers.join(',') + '\n';
     records.forEach((row) => {
-      const line = headers.map((h) => escapeCsv((row as Record<string, string>)[h] || '')).join(',');
+      const line = headers.map((h) => escapeCsv(((row as unknown) as Record<string, string>)[h] || '')).join(',');
       csvContent += line + '\n';
     });
 

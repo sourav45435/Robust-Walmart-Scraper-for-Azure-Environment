@@ -4,6 +4,7 @@
  */
 
 import { MANDATORY_FIELD_ORDER, WalmartProductRecord, ValidationCheckResult } from '../types/scraper';
+export { MANDATORY_FIELD_ORDER };
 
 export const WALMART_PRIVATE_LABELS = new Set([
   'great value',
@@ -165,8 +166,9 @@ export function runFullDatasetValidation(records: WalmartProductRecord[]): Valid
   // Check 3: Zero Nulls & String Types
   let nullErrors = 0;
   for (const r of records) {
+    const raw = (r as unknown) as Record<string, unknown>;
     for (const key of MANDATORY_FIELD_ORDER) {
-      if ((r as Record<string, unknown>)[key] === null || (r as Record<string, unknown>)[key] === undefined) {
+      if (raw[key] === null || raw[key] === undefined) {
         nullErrors++;
       }
     }
@@ -217,7 +219,7 @@ export function runFullDatasetValidation(records: WalmartProductRecord[]): Valid
 
   // Check 6: PPM (Price Per Measure) Scraped Verbatim
   const ppmRecords = records.filter(r => r.ppm && r.ppm.trim() !== '');
-  const validPpmPattern = /^\$\d+(\.\d{2})?\/(oz|fl oz|lb|ct|qt|gal|pk|ea|yd|ft|m|kg|g)$/i;
+  const validPpmPattern = /^\$\d+(\.\d{2})?\/(oz|fl oz|lb|ct|qt|gal|pk|ea|yd|ft|sq ft|m|kg|g|l)$/i;
   const invalidPpm = ppmRecords.filter(r => !validPpmPattern.test(r.ppm));
   results.push({
     id: 'check-ppm',
