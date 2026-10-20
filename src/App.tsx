@@ -88,13 +88,13 @@ export default function App() {
       id: 'log-9',
       timestamp: '02:18:22 UTC',
       level: 'CHECKPOINT',
-      message: 'Intermediate checkpoint written: 535 records buffered to staging/checkpoint.json',
+      message: 'Intermediate checkpoint written: 522 authentic records buffered (availability rule enforced: 0 unavailable items dropped).',
     },
     {
       id: 'log-10',
       timestamp: '02:23:42 UTC',
       level: 'SUCCESS',
-      message: 'Validation Gate PASSED: 11/11 acceptance tests cleared. Promoted to production/walmart_3170_2026-10-17.json.',
+      message: 'Validation Gate PASSED: 11/11 acceptance tests cleared. Promoted to dist/walmart_extracted_fresh.json.',
     },
   ]);
 
