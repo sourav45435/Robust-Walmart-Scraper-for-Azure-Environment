@@ -11,12 +11,14 @@ import { ValidationSuite } from './components/ValidationSuite';
 import { AzureArchView } from './components/AzureArchView';
 import { SourceCodeViewer } from './components/SourceCodeViewer';
 import { StoreModal } from './components/StoreModal';
+import { VercelModal } from './components/VercelModal';
 
 export default function App() {
   const [currentStore, setCurrentStore] = useState<StoreConfig>(CONFIGURED_STORES[0]);
   const [records, setRecords] = useState<WalmartProductRecord[]>(PRODUCTION_DATASET);
   const [activeTab, setActiveTab] = useState<TabId>('console');
   const [isStoreModalOpen, setIsStoreModalOpen] = useState(false);
+  const [isVercelModalOpen, setIsVercelModalOpen] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
 
   // Category counts state
@@ -228,6 +230,7 @@ export default function App() {
         onDownloadCsv={handleDownloadCsv}
         onTriggerRun={handleTriggerRun}
         isRunning={isRunning}
+        onOpenVercelModal={() => setIsVercelModalOpen(true)}
       />
 
       {/* Navigation Tabs */}
@@ -297,6 +300,12 @@ export default function App() {
         onClose={() => setIsStoreModalOpen(false)}
         currentStore={currentStore}
         onSelectStore={handleSelectStore}
+      />
+
+      {/* Deploy to Vercel Modal */}
+      <VercelModal
+        isOpen={isVercelModalOpen}
+        onClose={() => setIsVercelModalOpen(false)}
       />
     </div>
   );

@@ -10,6 +10,7 @@ interface HeaderProps {
   onDownloadCsv: () => void;
   onTriggerRun: () => void;
   isRunning: boolean;
+  onOpenVercelModal?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,6 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onDownloadCsv,
   onTriggerRun,
   isRunning,
+  onOpenVercelModal,
 }) => {
   return (
     <header className="bg-slate-900 border-b border-slate-800 text-white relative z-20 shadow-md">
@@ -48,6 +50,20 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Location & Fulfillment Badge + Action Controls */}
           <div className="flex flex-wrap items-center gap-2.5">
+            {/* Deploy to Vercel Button */}
+            {onOpenVercelModal && (
+              <button
+                onClick={onOpenVercelModal}
+                title="Deploy easily on Vercel"
+                className="flex items-center gap-1.5 bg-black hover:bg-slate-950 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/20 transition shadow-sm hover:border-white/40"
+              >
+                <svg viewBox="0 0 1155 1000" className="w-3 h-3 fill-current">
+                  <path d="M577.347 0L1154.69 1000H0L577.347 0Z" />
+                </svg>
+                <span>Deploy Vercel</span>
+              </button>
+            )}
+
             {/* Store & Fulfillment Context Pill */}
             <button
               onClick={onOpenStoreModal}
